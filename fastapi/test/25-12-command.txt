@@ -1,0 +1,544 @@
+    1  docker --version
+    2  apt-get install docker.io
+    3  sudo apt-get install docker.io
+    4  # Add Docker's official GPG key:
+    5  sudo apt-get update
+    6  sudo apt-get install ca-certificates curl
+    7  sudo install -m 0755 -d /etc/apt/keyrings
+    8  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+    9  sudo chmod a+r /etc/apt/keyrings/docker.asc
+   10  # Add the repository to Apt sources:
+   11  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+   12    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   13  sudo apt-get update
+   14  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   15  docker build -t test:01 .
+   16  sudo docker build -t test:01 .
+   17  sudo docker images ls
+   18  sudo docker images
+   19  sudo docker image ls
+   20  docker images
+   21  sudo docker images
+   22  docker login -u prateekverma999
+   23  ls
+   24  ls -a
+   25  pwd
+   26  cd /
+   27  pwd
+   28  ls
+   29  docker build -t testimage .
+   30  sudo docker build -t testimage .
+   31  cd dockertest/
+   32  sudo docker build -t testimage .
+   33  sudo docker images
+   34  sudo docker images rm test
+   35  sudo docker rm images test
+   36  sudo docker image rm images test
+   37  sudo docker image rm testimage:latest test:01
+   38  sudo docker images
+   39  sudo docker build -t testimage .
+   40  sudo docker images -a
+   41  docker ps
+   42  sudo docker ps
+   43  sudo docker ps -a
+   44  sudo docker image rm testimage:latest
+   45  sudo docker ps -a
+   46  sudo docker image ls -a
+   47  sudo docker build -t testimage .
+   48  sudo docker image ls -a
+   49  sudo su
+   50  groups
+   51  cat /etc/group
+   52  docker --version
+   53  docker build -t testr .
+   54  ls
+   55  cd dockertest/
+   56  docker build -t testr .
+   57  docker images
+   58  docker image rm testr testimage
+   59  docker images
+   60  whoami
+   61  groups
+   62  sudo su
+   63  docker build -t pyImage .
+   64  docker build -t py_image .
+   65  docker image ls
+   66  docker build -t py_image:20.1 .
+   67  docker image ls
+   68  docker run -it --name cont_py py_image:20.1 /bin/sh
+   69  docker ps -a
+   70  docker build -t py_image:20.2 .
+   71  docker image ls
+   72  docker run -it --rm --name cont_py py_image:20.2 /bin/sh
+   73  docker run -it --rm --name cont_py2 py_image:20.2 /bin/sh
+   74  docker image ls
+   75  docker ps -a
+   76  docker run -it --name cont_py2 py_image:20.2 /bin/sh
+   77  docker ps -a
+   78  sudo apt update
+   79  curl https://dl.openfoam.com/add-debian-repo.sh | sudo bash
+   80  sudo curl https://dl.openfoam.com/add-debian-repo.sh | sudo bash
+   81  sudo ping https://dl.openfoam.com/add-debian-repo.sh
+   82  ping https://dl.openfoam.com/add-debian-repo.sh
+   83  ping https://dl.openfoam.com/
+   84  sudo apt install ca-certificates
+   85  sudo apt autoremove
+   86  date
+   87  sudo apt update ; sudo apt-get install apt-transport-https ca-certificates -y ; sudo update-ca-certificates
+   88  sudo su
+   89  sudo apt update
+   90  sudo apt install default-jdk default-jre
+   91  javac
+   92  wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+   93  sudo sh -c "echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list"
+   94  sudo apt update
+   95  sudo apt install jenkins
+   96  wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key |sudo gpg --dearmor -o /usr/share/keyrings/jenkins.gpg
+   97  sudo sh -c 'echo deb [signed-by=/usr/share/keyrings/jenkins.gpg] http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+   98  sudo apt update
+   99  sudo apt install jenkins
+  100  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  101  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+  102  sudo apt-get update
+  103  sudo apt-get install jenkins
+  104  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  105  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+  106  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc --no-check-certificate  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key 
+  107  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"     https://pkg.jenkins.io/debian-stable binary/ | sudo tee     /etc/apt/sources.list.d/jenkins.list > /dev/null
+  108  sudo apt-get update
+  109  sudo apt upgrade -y
+  110  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc --no-check-certificate  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key 
+  111  echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]"     https://pkg.jenkins.io/debian-stable binary/ | sudo tee     /etc/apt/sources.list.d/jenkins.list > /dev/null
+  112  sudo apt-get update
+  113  sudo wget -O /usr/share/keyrings/jenkins-keyring.asc --no-check-certificate  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key 
+  114  sudo apt-get install jenkins
+  115  sudo apt-get install jenkins.io
+  116  curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+  117  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  118  sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  119  sudo apt update
+  120  sudo apt install --reinstall ca-certificates
+  121  Date
+  122  date
+  123  sudo apt install --reinstall ca-certificates
+  124  date
+  125  sudo date 112209302024.00
+  126  date
+  127  sudo apt update
+  128  sudo apt install ntp
+  129  date
+  130  sudo systemctl start ntp
+  131  sudo systemctl enable ntp
+  132  sudo systemctl start ntp
+  133  sudo systemctl enable ntp
+  134  sudo systemctl status ntp
+  135  sudo apt install chrony
+  136  sudo systemctl start chrony
+  137  sudo systemctl enable chrony
+  138  sudo timedatectl set-ntp true
+  139  timedatectl status
+  140  sudo timedatectl set-timezone UTC  # or your local timezone
+  141  timedatectl status
+  142  date
+  143  sudo timedatectl set-timezone IST
+  144  sudo timedatectl set-timezone Asia/Kolkata
+  145  date
+  146  sudo apt-get install jenkins
+  147  wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
+  148  date
+  149  sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  150  sudo apt update
+  151  sudo apt install ca-certificates
+  152  sudo update-ca-certificates
+  153  date
+  154  ping pkg.jenkins.io
+  155  curl -I https://pkg.jenkins.io
+  156  sudo apt update
+  157  sudo apt install --reinstall ca-certificates
+  158  sudo update-ca-certificates
+  159  openssl s_client -connect pkg.jenkins.io:443
+  160  sudo cp /path/to/jenkins.io-2023.key /usr/share/keyrings/jenkins-keyring.asc
+  161  sudo apt update
+  162  sudo apt install --reinstall ca-certificates
+  163  sudo update-ca-certificates
+  164  sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  165  sudo update-ca-certificates
+  166  sudo curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  167  logout
+  168  exit
+  169  sudo update-ca-certificates
+  170  date
+  171  ls
+  172  cd /
+  173  ls
+  174  cd etc/
+  175  ls
+  176  cd ca-certificates/
+  177  ls
+  178  ls -l
+  179  cd update.d/
+  180  ls
+  181  ls -l
+  182  cat jks-keystore 
+  183  cd ..
+  184  ls
+  185  cd ..
+  186  ls
+  187  cat ca-certificates.conf 
+  188  ls
+  189  cd ssl
+  190  ls
+  191  cd certs/
+  192  ls
+  193  cat zscaler_cert.pem 
+  194  ls
+  195  ls
+  196  cd /
+  197  ls
+  198  sudo update-ca-certificates
+  199  cd usr/local/share/ca-certificates/
+  200  ls
+  201  cd ..
+  202  ls
+  203  cd /mnt/c/Users/prateeve/Documents/
+  204  ls
+  205  openssl x509 -inform DER -in USERTrust.cer -out USERTrust.crt
+  206  sudo mv USERTrust.crt /usr/local/share/ca-certificates
+  207  sudo update-ca-certificates
+  208  sudo apt-get install jenkins
+  209  apt-get update
+  210  apt-get install apt-transport-https ca-certificates -y 
+  211  sudo apt-get update
+  212  sudo apt-get install apt-transport-https ca-certificates -y 
+  213  apt-get update
+  214  sudo apt-get update
+  215  sudo apt-get update check-certificate=off
+  216  sudo apt check-certificate=off -get update
+  217  sudo apt-get check-certificate=off update check-certificate=off
+  218  sudo curl check-certificate=off -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+  219  python test1.py 
+  220  python3 test1.py 
+  221  ls
+  222  python3 test1.py 
+  223  cls
+  224  clear
+  225  python3 test1.py 
+  226  clear
+  227  python3 test1.py 
+  228  python3 enum_test.py 
+  229  clear
+  230  python3 enum_test.py 
+  231  sudo apt-get install git
+  232  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  233  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/hello.py
+  234  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  235  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/hello.py
+  236  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  237  clear
+  238  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  239  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/hakerrank.py
+  240  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  241  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/class_example1.py
+  242  clear
+  243  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/class_example1.py
+  244  clear
+  245  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/class_example1.py
+  246  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/project1.py"
+  247  clear
+  248  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tipCalculator.py"
+  249  12
+  250  clear
+  251  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tipCalculator.py"
+  252  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  253  clear
+  254  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  255  clear
+  256  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  257  clear
+  258  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  259  clear
+  260  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  261  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  262  lo
+  263  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  264  clear
+  265  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  266  clear
+  267  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  268  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/getter_setter.py"
+  269  sudo apt update
+  270  sudo apt install gcc
+  271  sudo apt install build-essential
+  272  gcc --version
+  273  ls
+  274  cd c-programming/
+  275  ls
+  276  gcc test1.c
+  277  ls
+  278  ./a.out 
+  279  rm a.out 
+  280  ls
+  281  gcc test1.c -o test1
+  282  cat test1
+  283  clear
+  284  ls
+  285  ./test1
+  286  mv test1 test1.out
+  287  ls
+  288  ./test1.out 
+  289  which c
+  290  which gcc
+  291  cd /usr/bin/gcc
+  292  clear
+  293  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/getter_setter.py"
+  294  clear
+  295  gcc Hello.c 
+  296  ls
+  297  gcc Hello.c -o Hello.out
+  298  ./ Hello.out 
+  299  ./Hello.out 
+  300  gcc Hello.c -o Hello.out
+  301  ./Hello.out 
+  302  gcc Hello.c -o Hello.out
+  303  ./Hello.out 
+  304  gcc Hello.c -o Hello.out
+  305  ./Hello.out 
+  306  gcc Hello.c -o Hello.out
+  307  ./Hello.out 
+  308  gcc Hello.c -o Hello.out
+  309  ./Hello.out 
+  310  gcc Hello.c -o Hello.out
+  311  ./Hello.out 
+  312  gcc Hello.c -o Hello.out
+  313  ./Hello.out 
+  314  gcc Hello.c -o Hello.out
+  315  ./Hello.out 
+  316  gcc Hello.c -o Hello.out
+  317  ./Hello.out 
+  318  gcc Hello.c -o Hello.out
+  319  ./Hello.out 
+  320  gcc Hello.c -o Hello.out
+  321  ./Hello.out 
+  322  gcc Hello.c -o Hello.out
+  323  ./Hello.out 
+  324  gcc Hello.c -o Hello.out
+  325  ./Hello.out 
+  326  gcc Hello.c -o Hello.out
+  327  ./Hello.out 
+  328  gcc adding_variablr.c -o adding_variablr.out
+  329  ./adding_variablr.out 
+  330  gcc type_conversion.c -o type_conversion.out
+  331  ./type_conversion.out 
+  332  gcc type_conversion.c -o type_conversion.out
+  333  ./type_conversion.out 
+  334  gcc type_conversion.c -o type_conversion.out
+  335  ./type_conversion.out 
+  336  gcc type_conversion.c -o type_conversion.out
+  337  ./type_conversion.out 
+  338  gcc type_conversion.c -o type_conversion.out
+  339  ./type_conversion.out 
+  340  gcc type_conversion.c -o type_conversion.out
+  341  ./type_conversion.out 
+  342  gcc type_conversion.c -o type_conversion.out
+  343  ./type_conversion.out 
+  344  sudo mysql
+  345  sudo mysql -u sys -p
+  346  sudo mysql -u root -p
+  347  sudo mysql -u root -pclear
+  348  clear
+  349  sudo mysql
+  350  sudo mysql -u root -p
+  351  service staus mysql
+  352  service mysql status
+  353  service mysql start
+  354  sudo service mysql start
+  355  service mysql status
+  356  sudo mysql -u root -p
+  357  mysql
+  358  sudo mysql
+  359  sudo apt install mysql-server
+  360  sudo apt install mysql-workbench
+  361  mysql
+  362  sudo mysql
+  363  systemctl service mysql
+  364  systemctl mysql service
+  365  service mysql status
+  366  clear
+  367  mysql -u root
+  368  mysql -u root -p
+  369  mysql -u prateeve -p
+  370  sudo mysql
+  371  service mysql status
+  372  which mysql
+  373  cd /usr/bin/mysql
+  374  cat /usr/bin/mysql
+  375  clear
+  376  cd /usr/bin/
+  377  ls -l
+  378  ls -l | grep mysql
+  379  cat mysql_config_editor
+  380  vim mysql_config_editor
+  381  ls -l | grep mysql
+  382  sudo cat mysql_config_editor
+  383  sudo chmode mysql_config_editor 600
+  384  sudo chmod mysql_config_editor 600
+  385  sudo chmod 600 mysql_config_editor
+  386  sudo cat mysql_config_editor
+  387  clear
+  388  mysql -u root -p
+  389  mysql -u wheel -p
+  390  mysql -u prateeve -p
+  391  sudo mysql
+  392  mysql
+  393  mysql -p
+  394  mysql -u prateeve@LIN-2M2NBK3 -p
+  395  mysql
+  396  mysql -p
+  397  sudo mysql
+  398  clear
+  399  cd /
+  400  cd ~
+  401  clear
+  402  service mysql status
+  403  service mysql stop
+  404  systemctl status mysql.service
+  405  systemctl stop mysql.service
+  406  sudo systemctl stop mysql.service
+  407  clear
+  408  sudo mysql
+  409  service mysql status
+  410  whoami
+  411  ifconfig
+  412  sudo apt install net-tools
+  413  ifconfig
+  414  sudo ss -tulnp | grep 3306
+  415  sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+  416  sudo service mysql restart
+  417  sudo mysql
+  418  sudo mysql -u root -p
+  419  sudo cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep bind
+  420  service mysql stop
+  421  sudo service mysql stop
+  422  sudo service mysql status
+  423  sudo service mysql start
+  424  sudo service mysql status
+  425  sudo mysql -u root -p
+  426  ifconfig
+  427  sudo mysql
+  428  sudomysql -u remote_root -p
+  429  sudo mysql -u remote_root -p
+  430  sudo mysql
+  431  exit
+  432  sudo mysql
+  433  ls
+  434  cd mySQL/
+  435  ls
+  436  sudo mysql -u root -p > university_university.sql 
+  437  exit
+  438  logout
+  439  exit
+  440  sudo mysql
+  441  mysql
+  442  sudo mysql
+  443  cls
+  444  clear
+  445  cd fastapi/test/
+  446  python --version
+  447  python3 --version
+  448  python3 -m venv project1
+  449  apt install python3.12-venv
+  450  sudo apt install python3.12-venv
+  451  python3 -m venv project1
+  452  python3 --version
+  453  project1/bin/activate
+  454  source project1/bin/activate
+  455  python3 --version
+  456  sudo add-apt-repository ppa:deadsnakes/ppa
+  457  sudo apt update
+  458  sudo apt upgrade
+  459  python3 --version
+  460  sudo apt install python3.13.1
+  461  sudo apt install python3.13
+  462  python3 --version
+  463  sudo apt update
+  464  sudo apt upgrade
+  465  python3 --version
+  466  sudo apt install python3.13
+  467  pip install python3.13
+  468  deactivate
+  469  python3 --version
+  470  source project1/bin/activate
+  471  python3 --version
+  472  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13
+  473  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13.1
+  474  sudo update-alternatives --install needs /usr/bin/python3 python3 /usr/bin/python3.13.1
+  475  sudo update-alternatives --install needs /usr/bin/python3 python3 /usr/bin/python3.13
+  476  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13.1
+  477  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  478  python3 --version
+  479  deactivate
+  480  python3 --version
+  481  source project1/bin/activate
+  482  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  483  python3 --version
+  484  deactivate
+  485  python3 --version
+  486  source project1/bin/activate
+  487  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  488  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /usr/bin/python3.13 1
+  489  python3 --version
+  490  deactivate
+  491  python3 --version
+  492  python3
+  493  which python
+  494  which python3
+  495  sudo apt install python3.12
+  496  python3 --version
+  497  sudo apt install --reinstall command-not-found
+  498  python3 --version
+  499  exit
+  500  python3 --version
+  501  sudo update-alternatives --install/mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  502  python3 --version
+  503  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  504  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  505  python3 --version
+  506  cd fastapi/test/
+  507  source project1/bin/activate
+  508  which python
+  509  which python3
+  510  deactivate
+  511  python3 --version
+  512  python3.13 -m venv project1
+  513  python3.13 --version
+  514  python3.13 -m venv project1
+  515  sudo apt install python3.13-venv
+  516  python3.13 -m venv project1
+  517  source project1/bin/activate
+  518  python3 --version
+  519  deactivate
+  520  python3 --version
+  521  source project1/bin/activate
+  522  clear
+  523  pip freeze
+  524  pip install uvicorn
+  525  pip freeze
+  526  pip install fastapi
+  527  pip freeze > requirements.txt
+  528  deactivate
+  529  python3 -m venv project2
+  530  pyhton3 --version
+  531  python3 --version
+  532  source project2/bin/activate
+  533  pip install requirements.txt 
+  534  pip install -r requirements.txt 
+  535  pip freeze
+  536  python3 --version
+  537  deactivate 
+  538  source project1/bin/activate
+  539  python3 --version
+  540  deactivate 
+  541  python3 --version
+  542  history
+  543  history > 25/12-command.txt
+  544  history > 25-12-command.txt

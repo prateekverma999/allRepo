@@ -1,0 +1,27 @@
+  449  apt install python3.12-venv
+  450  sudo apt install python3.12-venv
+  495  sudo apt install python3.12
+  547  history | grep python3 | grep python3.12 > 25-12-command3.txt
+  460  sudo apt install python3.13.1
+  461  sudo apt install python3.13
+  466  sudo apt install python3.13
+  467  pip install python3.13
+  472  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13
+  473  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13.1
+  474  sudo update-alternatives --install needs /usr/bin/python3 python3 /usr/bin/python3.13.1
+  475  sudo update-alternatives --install needs /usr/bin/python3 python3 /usr/bin/python3.13
+  476  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13.1
+  477  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  482  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  487  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  488  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /usr/bin/python3.13 1
+  501  sudo update-alternatives --install/mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  503  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  504  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  512  python3.13 -m venv project1
+  513  python3.13 --version
+  514  python3.13 -m venv project1
+  515  sudo apt install python3.13-venv
+  516  python3.13 -m venv project1
+  546  history | grep python3 | grep python3.13 > 25-12-command3.txt
+  548  history | grep python3 | grep python3.13 >> 25-12-command3.txt

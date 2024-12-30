@@ -1,0 +1,88 @@
+  220  python3 test1.py 
+  222  python3 test1.py 
+  225  python3 test1.py 
+  227  python3 test1.py 
+  228  python3 enum_test.py 
+  230  python3 enum_test.py 
+  232  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  233  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/hello.py
+  234  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  235  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/hello.py
+  236  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  238  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  239  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/hakerrank.py
+  240  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/enum_test.py
+  241  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/class_example1.py
+  243  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/class_example1.py
+  245  /bin/python3 /mnt/c/Users/prateeve/Documents/allRepo/class_example1.py
+  246  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/project1.py"
+  248  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tipCalculator.py"
+  251  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tipCalculator.py"
+  252  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  254  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  256  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  258  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  260  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/tresureHunt.py"
+  261  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  263  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  265  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  267  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/animalTrick_class&instanceVariable.py"
+  268  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/getter_setter.py"
+  293  /bin/python3 "/mnt/c/Users/prateeve/Documents/allRepo/angala yu practice/getter_setter.py"
+  447  python3 --version
+  448  python3 -m venv project1
+  449  apt install python3.12-venv
+  450  sudo apt install python3.12-venv
+  451  python3 -m venv project1
+  452  python3 --version
+  455  python3 --version
+  459  python3 --version
+  460  sudo apt install python3.13.1
+  461  sudo apt install python3.13
+  462  python3 --version
+  465  python3 --version
+  466  sudo apt install python3.13
+  467  pip install python3.13
+  469  python3 --version
+  471  python3 --version
+  472  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13
+  473  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13.1
+  474  sudo update-alternatives --install needs /usr/bin/python3 python3 /usr/bin/python3.13.1
+  475  sudo update-alternatives --install needs /usr/bin/python3 python3 /usr/bin/python3.13
+  476  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13.1
+  477  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  478  python3 --version
+  480  python3 --version
+  482  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  483  python3 --version
+  485  python3 --version
+  487  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  488  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /usr/bin/python3.13 1
+  489  python3 --version
+  491  python3 --version
+  492  python3
+  494  which python3
+  495  sudo apt install python3.12
+  496  python3 --version
+  498  python3 --version
+  500  python3 --version
+  501  sudo update-alternatives --install/mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  502  python3 --version
+  503  sudo update-alternatives --install /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3 python3 /mnt/c/Users/prateeve/Documents/allRepo/fastapi/test/project1/bin/python3.13 1
+  504  sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.13 1
+  505  python3 --version
+  509  which python3
+  511  python3 --version
+  512  python3.13 -m venv project1
+  513  python3.13 --version
+  514  python3.13 -m venv project1
+  515  sudo apt install python3.13-venv
+  516  python3.13 -m venv project1
+  518  python3 --version
+  520  python3 --version
+  529  python3 -m venv project2
+  531  python3 --version
+  536  python3 --version
+  539  python3 --version
+  541  python3 --version
+  545  history | grep python3 > 25-12-command2.txt
