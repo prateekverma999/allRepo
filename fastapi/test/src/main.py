@@ -7,7 +7,7 @@ import time
 from random import randint
 from sqlalchemy.orm import Session
 from Database import model
-from Database.database import get_db, engine
+from Database import get_db, engine
 
 app = FastAPI()
 
