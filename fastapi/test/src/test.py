@@ -1,6 +1,6 @@
-from Database.model import add
-# list = [1, 2, 3,4, 5,6, 7,8, 9]
-print(__name__)
+# from Database.model import add
+# # list = [1, 2, 3,4, 5,6, 7,8, 9]
+# print(__name__)
 # # print(list[-3])
 # print(list[-3:])
 # # print(list[-3:-1])
@@ -31,3 +31,11 @@ print(__name__)
 # c = b+a
 
 # print(c)
+
+def add(a,b:int = 20):
+    print(a,b)
+    return "ok"
+
+ab = add(10)
+
+print(ab)

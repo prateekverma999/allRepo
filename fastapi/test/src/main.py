@@ -21,49 +21,30 @@ class Post(BaseModel):
     rating: Optional[int] = None
 
 
-
-# while True:
-#     try:
-#         conn = psycopg2.connect(host='172.31.248.137',
-#                                 database='fastapi_1', 
-#                                 user='postgres',
-#                                 password='admin', 
-#                                 cursor_factory=RealDictCursor
-#                                 )
-#         cursor = conn.cursor()
-#         print("Database connection was succesfull!")
-#         break
-#     except Exception as error:
-#         print("Connecting to database failed")
-#         print("Error: ", error)
-#         time.sleep(2)
-
-
-
 @app.get("/home")
 def get_home():
     return {'message': 'Welcome to the API'}
 
 @app.get("/sqlconnect")
 def test_db(db: Session = Depends(get_db)):
-    return {'message': 'Successfully connected to database'}
+
+    posts = db.query(model.Post).all()
+    return {'message': posts}
 
 @app.get('/posts')
-def get_post():
-    cursor.execute(""" SELECT * FROM \"myPost\" """)
-    post = cursor.fetchall()
+def get_post(db : Session = Depends(get_db)):
+    post = db.query(model.Post).all()
     return {'post': post}
 
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
-def create_post(post:Post):
-    cursor.execute(""" INSERT INTO \"myPost\" (name, age, city, published, rating) 
-                   VALUES (%s, %s, %s, %s, %s) RETURNING *""",
-                   (post.name, post.age, post.city, post.published, post.rating)
-                   )
-    new_post = cursor.fetchone()
-    conn.commit()
+def create_post(post:Post, db: Session = Depends(get_db)):
+    # new_post = model.Post(name=post.name, age=post.age, city=post.city, published=post.published, rating=post.rating)
+    new_post = model.Post(**post.model_dump()) # Using model_dump() instead of dict()
+    db.add(new_post)
+    db.commit()
+    db.refresh(new_post)
     return {'post': new_post}
 
 @app.get("/posts/recent")
