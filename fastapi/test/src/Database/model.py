@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String, Boolean, Float
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql.expression import text
-from .database import base
+from .database import Base
 
 
-class Post(base):
+class Post(Base):
     __tablename__ = "posts"
 
     id = Column(Integer, primary_key=True, nullable=False)

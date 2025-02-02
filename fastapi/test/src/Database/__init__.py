@@ -1,2 +1,2 @@
-from .database import engine, base, SessionLocal, get_db
+from .database import engine, Base, SessionLocal, get_db
 from .model import Post
