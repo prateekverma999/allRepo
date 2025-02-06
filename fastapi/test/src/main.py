@@ -1,29 +1,14 @@
-from fastapi import FastAPI, Response, status, HTTPException, Depends, Query
-from pydantic import BaseModel
+from fastapi import FastAPI, status, HTTPException, Depends, Query
 from typing import Optional
 from sqlalchemy.orm import Session
 from sqlalchemy import asc, desc
-from Database import model
-from Database import get_db, engine
+from Database import database, model, schema
 
 app = FastAPI()
 
 # Ensure database tables are created
-model.Base.metadata.create_all(bind=engine)
+model.Base.metadata.create_all(bind=database.engine)
 
-class PostCreate(BaseModel):
-    name: str
-    age: int
-    city: str
-    published: bool = True
-    rating: Optional[int] = None
-
-class PostUpdate(BaseModel):
-    name: Optional[str] = None
-    age: Optional[int] = None
-    city: Optional[str] = None
-    published: Optional[bool] = None
-    rating: Optional[int] = None
 
 @app.get("/home")
 def get_home():
@@ -33,7 +18,7 @@ def get_home():
 # ✅ Filtering, Pagination, Sorting, and Search
 @app.get('/posts')
 def get_posts(
-    db: Session = Depends(get_db),
+    db: Session = Depends(database.get_db),
     name: Optional[str] = Query(None, description="Filter posts by name"),
     city: Optional[str] = Query(None, description="Filter posts by city"),
     published: Optional[bool] = Query(None, description="Filter by published status"),
@@ -65,7 +50,7 @@ def get_posts(
     return {'posts': posts}
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
-def create_post(post: PostCreate, db: Session = Depends(get_db)):
+def create_post(post: schema.PostCreate, db: Session = Depends(database.get_db)):
     new_post = model.Post(**post.model_dump())  # Use model_dump() to convert Pydantic model to dictionary
     db.add(new_post)
     db.commit()
@@ -73,12 +58,12 @@ def create_post(post: PostCreate, db: Session = Depends(get_db)):
     return {'post': new_post}
 
 @app.get("/posts/recent")
-def get_recent_posts(db: Session = Depends(get_db)):
+def get_recent_posts(db: Session = Depends(database.get_db)):
     post = db.query(model.Post).order_by(model.Post.id.desc()).limit(3).all()
     return {'post': post}
 
 @app.get("/posts/{id}")
-def get_post_by_id(id: int, db: Session = Depends(get_db)):
+def get_post_by_id(id: int, db: Session = Depends(database.get_db)):
     post = db.query(model.Post).filter(model.Post.id == id).first()
     if not post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
@@ -86,7 +71,7 @@ def get_post_by_id(id: int, db: Session = Depends(get_db)):
     return {'post': post}
 
 @app.delete("/posts/{id}", status_code=status.HTTP_410_GONE)
-def delete_post(id: int, db: Session = Depends(get_db)):
+def delete_post(id: int, db: Session = Depends(database.get_db)):
     post_query = db.query(model.Post).filter(model.Post.id == id)
     if post_query.first() is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
@@ -96,7 +81,7 @@ def delete_post(id: int, db: Session = Depends(get_db)):
     return {'message': f"Post with id: {id} has been deleted"}
 
 @app.put("/posts/{id}")
-def update_post(id: int, post: PostCreate, db: Session = Depends(get_db)):
+def update_post(id: int, post: schema.PostCreate, db: Session = Depends(database.get_db)):
     post_query = db.query(model.Post).filter(model.Post.id == id)
     existing_post = post_query.first()
 
@@ -109,7 +94,7 @@ def update_post(id: int, post: PostCreate, db: Session = Depends(get_db)):
     return {'message': f"Post with id: {id} has been fully updated"}
 
 @app.patch("/posts/{id}")
-def partial_update_post(id: int, post: PostUpdate, db: Session = Depends(get_db)):
+def partial_update_post(id: int, post: schema.PostUpdate, db: Session = Depends(database.get_db)):
     post_query = db.query(model.Post).filter(model.Post.id == id)
     existing_post = post_query.first()
 
