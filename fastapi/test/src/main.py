@@ -1,8 +1,10 @@
 from fastapi import FastAPI, status, HTTPException, Depends, Query
 from typing import Optional
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from sqlalchemy import asc, desc
-from Database import database, model, schema
+from Database import database, model, schema, utils
+
 
 app = FastAPI()
 
@@ -112,8 +114,25 @@ def partial_update_post(id: int, post: schema.PostUpdate, db: Session = Depends(
 
 @app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schema.UserResponce)
 def users(user: schema.UserCreate, db: Session = Depends(database.get_db)):
-    new_user = model.User(**user.model_dump())  # Use model_dump() to convert Pydantic model to dictionary
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
+    try:
+        # Hash the password - user.password
+        hashed_password = utils.hash(user.password)
+        user.password = hashed_password
+        # Create user
+        new_user = model.User(**user.model_dump())  # Use model_dump() to convert Pydantic model to dictionary
+        db.add(new_user)
+        db.commit()
+        db.refresh(new_user)
+        return new_user
+    except IntegrityError:
+        db.rollback()  # Rollback to prevent broken transactions
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with this email already exists")
+    
+
+@app.get("/users/{id}", response_model=schema.UserResponce)
+def get_user(id: int, db: Session = Depends(database.get_db)):
+    user = db.query(model.User).filter(model.User.id == id).first()
+    if not user:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
+                            detail=f"User with id:{id} not exist")
+    return user
