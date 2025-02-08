@@ -108,3 +108,12 @@ def partial_update_post(id: int, post: schema.PostUpdate, db: Session = Depends(
         db.commit()
 
     return {'message': f"Post with id: {id} has been partially updated"}
+
+
+@app.post("/users", status_code=status.HTTP_201_CREATED, response_model=schema.UserResponce)
+def users(user: schema.UserCreate, db: Session = Depends(database.get_db)):
+    new_user = model.User(**user.model_dump())  # Use model_dump() to convert Pydantic model to dictionary
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+    return new_user

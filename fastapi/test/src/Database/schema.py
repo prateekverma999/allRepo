@@ -1,5 +1,6 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, EmailStr
 from typing import Optional
+from datetime import datetime
 
 
 class PostCreate(BaseModel):
@@ -21,6 +22,17 @@ class PostResponce(BaseModel):
     city: str
     published: bool = True
 
-    model_config = ConfigDict(from_attributes=True) # for pydantic version 2.0
+    # model_config = ConfigDict(from_attributes=True) # for pydantic version 2.0
     # class Config: # for pydantic version 1.0
     #     orm_mode = True
+
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+class UserCreate(UserLogin):
+    pass
+
+class UserResponce(BaseModel):
+    email: EmailStr
+    created_at: datetime
