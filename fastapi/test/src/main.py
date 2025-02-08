@@ -16,7 +16,7 @@ def get_home():
 
 
 # ✅ Filtering, Pagination, Sorting, and Search
-@app.get('/posts')
+@app.get('/posts', response_model=list[schema.PostResponce])
 def get_posts(
     db: Session = Depends(database.get_db),
     name: Optional[str] = Query(None, description="Filter posts by name"),
@@ -47,28 +47,28 @@ def get_posts(
     # Pagination
     posts = query.offset(offset).limit(limit).all()
     
-    return {'posts': posts}
+    return posts
 
-@app.post("/posts", status_code=status.HTTP_201_CREATED)
+@app.post("/posts", status_code=status.HTTP_201_CREATED, response_model=schema.PostResponce)
 def create_post(post: schema.PostCreate, db: Session = Depends(database.get_db)):
     new_post = model.Post(**post.model_dump())  # Use model_dump() to convert Pydantic model to dictionary
     db.add(new_post)
     db.commit()
     db.refresh(new_post)
-    return {'post': new_post}
+    return new_post
 
-@app.get("/posts/recent")
+@app.get("/posts/recent", response_model=list[schema.PostResponce])
 def get_recent_posts(db: Session = Depends(database.get_db)):
     post = db.query(model.Post).order_by(model.Post.id.desc()).limit(3).all()
-    return {'post': post}
+    return post
 
-@app.get("/posts/{id}")
+@app.get("/posts/{id}", response_model=schema.PostResponce)
 def get_post_by_id(id: int, db: Session = Depends(database.get_db)):
     post = db.query(model.Post).filter(model.Post.id == id).first()
     if not post:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
                             detail=f"Post with id: {id} not found")
-    return {'post': post}
+    return post
 
 @app.delete("/posts/{id}", status_code=status.HTTP_410_GONE)
 def delete_post(id: int, db: Session = Depends(database.get_db)):
