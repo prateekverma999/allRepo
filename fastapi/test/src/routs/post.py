@@ -10,15 +10,15 @@ router = APIRouter(prefix="/posts", tags=["Posts"])
 @router.get("/", response_model=List[schema.PostResponce])
 def get_posts(
     db: Session = Depends(database.get_db),
-    name: Optional[str] = Query(None, description="Filter posts by name"),
-    city: Optional[str] = Query(None, description="Filter posts by city"),
+    title: Optional[str] = Query(None, description="Filter posts by title"),
+    content: Optional[str] = Query(None, description="Filter posts by content"),
     published: Optional[bool] = Query(None, description="Filter by published status"),
     limit: int = Query(10, ge=1, le=100, description="Limit results"),
     offset: int = Query(0, ge=0, description="Skip initial results"),
     order_by: str = Query("id", description="Sort by field"),
     order: str = Query("asc", description="Sort order"),
 ):
-    query = utils.apply_filters(db.query(model.Post), name, city, published)
+    query = utils.apply_filters(db.query(model.Post), title, content, published)
     if hasattr(model.Post, order_by):
         query = query.order_by(desc(getattr(model.Post, order_by)) if order == "desc" else asc(getattr(model.Post, order_by)))
     return query.offset(offset).limit(limit).all()

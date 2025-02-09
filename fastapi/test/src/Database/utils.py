@@ -11,11 +11,11 @@ def hash(password: str):
     return pwd_context.hash(password)
 
 # Common query filtering function
-def apply_filters(query, name, city, published):
-    if name:
-        query = query.filter(model.Post.name.ilike(f"%{name}%"))
-    if city:
-        query = query.filter(model.Post.city.ilike(f"%{city}%"))
+def apply_filters(query, title, content, published):
+    if title:
+        query = query.filter(model.Post.title.ilike(f"%{title}%"))
+    if content:
+        query = query.filter(model.Post.content.ilike(f"%{content}%"))
     if published is not None:
         query = query.filter(model.Post.published == published)
     return query

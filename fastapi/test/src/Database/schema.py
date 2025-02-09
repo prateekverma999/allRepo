@@ -4,22 +4,19 @@ from datetime import datetime
 
 
 class PostCreate(BaseModel):
-    name: str
-    age: int
-    city: str
+    title: str
+    content: str
     published: bool = True
     rating: Optional[int] = None
 
 class PostUpdate(PostCreate):
-    name: Optional[str] = None
-    age: Optional[int] = None
-    city: Optional[str] = None
+    title: Optional[str] = None
+    content: Optional[str] = None
     published: Optional[bool] = None
 
 class PostResponce(BaseModel):
-    name: str
-    age: int
-    city: str
+    title: str
+    content: str
     published: bool = True
 
     # model_config = ConfigDict(from_attributes=True) # for pydantic version 2.0
