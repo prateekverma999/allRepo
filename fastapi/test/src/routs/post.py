@@ -1,106 +1,70 @@
 from fastapi import status, HTTPException, Depends, Query, APIRouter
-from typing import Optional
+from typing import Optional, List
 from sqlalchemy.orm import Session
 from sqlalchemy import asc, desc
-from Database import database, model, schema
+from Database import database, model, schema, utils
+
+router = APIRouter(prefix="/posts", tags=["Posts"])
 
 
-router = APIRouter(
-    prefix="/posts",
-    tags=['Posts']
-)
-
-
-# ✅ Filtering, Pagination, Sorting, and Search
-@router.get('/', response_model=list[schema.PostResponce])
+@router.get("/", response_model=List[schema.PostResponce])
 def get_posts(
     db: Session = Depends(database.get_db),
     name: Optional[str] = Query(None, description="Filter posts by name"),
     city: Optional[str] = Query(None, description="Filter posts by city"),
     published: Optional[bool] = Query(None, description="Filter by published status"),
-    limit: Optional[int] = Query(10, ge=1, le=100, description="Limit the number of results"),
-    offset: Optional[int] = Query(0, ge=0, description="Skip initial results"),
-    order_by: Optional[str] = Query("id", description="Sort by a field (id, name, age, city, rating)"),
-    order: Optional[str] = Query("asc", description="Sort order (asc or desc)")
+    limit: int = Query(10, ge=1, le=100, description="Limit results"),
+    offset: int = Query(0, ge=0, description="Skip initial results"),
+    order_by: str = Query("id", description="Sort by field"),
+    order: str = Query("asc", description="Sort order"),
 ):
-    query = db.query(model.Post)
-
-    # Filtering
-    if name:
-        query = query.filter(model.Post.name.ilike(f"%{name}%"))  # Case-insensitive search
-    if city:
-        query = query.filter(model.Post.city.ilike(f"%{city}%"))
-    if published is not None:
-        query = query.filter(model.Post.published == published)
-
-    # Sorting
+    query = utils.apply_filters(db.query(model.Post), name, city, published)
     if hasattr(model.Post, order_by):
-        if order.lower() == "desc":
-            query = query.order_by(desc(getattr(model.Post, order_by)))
-        else:
-            query = query.order_by(asc(getattr(model.Post, order_by)))
-
-    # Pagination
-    posts = query.offset(offset).limit(limit).all()
-    
-    return posts
+        query = query.order_by(desc(getattr(model.Post, order_by)) if order == "desc" else asc(getattr(model.Post, order_by)))
+    return query.offset(offset).limit(limit).all()
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schema.PostResponce)
 def create_post(post: schema.PostCreate, db: Session = Depends(database.get_db)):
-    new_post = model.Post(**post.model_dump())  # Use model_dump() to convert Pydantic model to dictionary
+    new_post = model.Post(**post.model_dump())
     db.add(new_post)
     db.commit()
     db.refresh(new_post)
     return new_post
 
-@router.get("/recent", response_model=list[schema.PostResponce])
+@router.get("/recent", response_model=List[schema.PostResponce])
 def get_recent_posts(db: Session = Depends(database.get_db)):
-    post = db.query(model.Post).order_by(model.Post.id.desc()).limit(3).all()
-    return post
+    return db.query(model.Post).order_by(model.Post.id.desc()).limit(3).all()
 
 @router.get("/{id}", response_model=schema.PostResponce)
 def get_post(id: int, db: Session = Depends(database.get_db)):
     post = db.query(model.Post).filter(model.Post.id == id).first()
     if not post:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                            detail=f"Post with id: {id} not found")
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Post with id: {id} not found")
     return post
 
 @router.delete("/{id}", status_code=status.HTTP_410_GONE)
 def delete_post(id: int, db: Session = Depends(database.get_db)):
-    post_query = db.query(model.Post).filter(model.Post.id == id)
-    if post_query.first() is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                            detail=f"Post with id: {id} not found")
-    post_query.delete(synchronize_session=False)
-    db.commit()
-    return {'message': f"Post with id: {id} has been deleted"}
+    if db.query(model.Post).filter(model.Post.id == id).delete(synchronize_session=False):
+        db.commit()
+        return {"message": f"Post with id: {id} has been deleted"}
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Post with id: {id} not found")
 
 @router.put("/{id}")
 def update_post(id: int, post: schema.PostCreate, db: Session = Depends(database.get_db)):
     post_query = db.query(model.Post).filter(model.Post.id == id)
-    existing_post = post_query.first()
-
-    if existing_post is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                            detail=f"Post with id: {id} not found")
-
+    if post_query.first() is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Post with id: {id} not found")
     post_query.update(post.model_dump(), synchronize_session=False)
     db.commit()
-    return {'message': f"Post with id: {id} has been fully updated"}
+    return {"message": f"Post with id: {id} has been updated"}
 
 @router.patch("/{id}")
 def partial_update_post(id: int, post: schema.PostUpdate, db: Session = Depends(database.get_db)):
     post_query = db.query(model.Post).filter(model.Post.id == id)
-    existing_post = post_query.first()
-
-    if existing_post is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, 
-                            detail=f"Post with id: {id} not found")
-
+    if post_query.first() is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Post with id: {id} not found")
     updated_data = {k: v for k, v in post.model_dump().items() if v is not None}
     if updated_data:
         post_query.update(updated_data, synchronize_session=False)
         db.commit()
-
-    return {'message': f"Post with id: {id} has been partially updated"}
+    return {"message": f"Post with id: {id} has been partially updated"}
